@@ -18,7 +18,7 @@ public class Mom extends Human {
     }
 
     public void reality_check(Karlson karlson){
-        if (karlson.is_known == true){
+        if (karlson.checker.get_fame() == true){
             nightmare = true;
             System.out.println("Жизнь мамы обратилась в кошмар...");
         }

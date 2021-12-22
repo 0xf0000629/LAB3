@@ -23,9 +23,15 @@ public class Hometorturer extends Human {
     public void action(String action) {
         System.out.println("Фрёкен Бок " + action);
     }
-    public void TVstory(Karlson karlson) {
-        System.out.println("Фрёкен Бок написала в шведское телевидение о проделках, как оказалось, " + karlson.getName() + "...");
-        karlson.check();
+    public void TVstory(int att, Karlson karlson) throws IncorrectInputException {
+        if (att >= 0) {
+            for (int i=0;i<att;i++) {
+                System.out.println("Фрёкен Бок написала в шведское телевидение о проделках, как оказалось, " + karlson.getName() + "...");
+                karlson.checker.set_fame();
+            }
+        } else {
+            throw new IncorrectInputException("Введено неверное значение!");
+        }
     }
 
     @Override

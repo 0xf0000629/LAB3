@@ -2,7 +2,7 @@ import java.util.Objects;
 
 public class Karlson extends Human {
     public Age age = Age.ADULT;
-    public boolean is_known = false;
+    private static boolean is_known = false;
     public Karlson(String name, EnclosedSpace new_location) {
         super(name, new_location);
     }
@@ -15,13 +15,35 @@ public class Karlson extends Human {
     public Age getAge() {
         return age;
     }
-    public void check() {
-        if (Math.random() < 0.1) {
-            System.out.println("О Карлсоне узнали!");
-            is_known = true;
+    static class Check {
+        boolean get_fame()
+        {
+            return is_known;
+        }
+        void set_fame()
+        {
+            if (Math.random() < 0.1) {
+                System.out.println("О Карлсоне узнали!");
+                is_known = true;
+            }
         }
     }
-    public void fly() {
+    Check checker = new Check();
+    private class Propeller {
+        private void spin(int var) {
+            int time = 0;
+            for (;var<100;var=Math.min(100,var*2)) {
+                time+=1;
+                System.out.println("Пропеллер Карлсона достиг " + var + "% мощности!");
+                if (time > 10) {
+                    throw new InfiniteLoop("Ошибка: бесконечный цикл");
+                }
+            }
+        }
+    }
+    Propeller prop = new Propeller();
+    public void fly(int base_power) throws InfiniteLoop{
+        prop.spin(base_power);
         System.out.println("Карлсон взлетел!");
     }
     public void take(Item obj, Room room){
